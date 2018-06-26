@@ -1,37 +1,30 @@
 var VideoListView = Backbone.View.extend({
   
-  // el: '#video-list',
-  
-  collection: this.videos,
+  el: '.list',
 
-  initialize: function(collection) {
+  model: Video,
+
+
+  initialize: function(videos) {
     this.listenTo(this.collection, 'sync', this.render);
-    // console.log(collection.collection.models);
-    // this.collection.on('change', function() {
-      
-    // })
   },
 
   render: function() {
+    //detaches children elements from $el, which is list on app.html template
     this.$el.children().detach();
+    //applies the template to this $el
     this.$el.html(this.template());
-    // this.$el.children().detach();
-    if (this.collection) {
-      this.collection.forEach(function(model) {
-        var video = new VideoListEntryView({model: model});
-        this.$el.append(video.render().$el);
-      
-      }, this); 
-    }
-    // this.$el.children().detach();
-    // this.$el.html(this.template());
+    //appends to the children...
+    this.$el.children().append(
+      //this.collection is mapped over, and the Videos are initialized,
+      //the render function on eachVideo object is called (see videoListEntry for output specifics),
+      //the result of the render is an element, which is returned and appended.
+      this.collection.map(function(vids) {
+        return new VideoListEntryView({model: vids}).render();
+      })
+    );
     return this;
   },
 
-  // renderVideo: function(video) {
-  //   var videoView = new VideoView
-  // }
-
   template: templateURL('src/templates/videoList.html')
-
 });

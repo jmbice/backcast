@@ -1,0 +1,18 @@
+{
+  "name": "backcast",
+  "description": "Making YouTube with Backbone",
+  "main": "",
+  "authors": [
+    "Hack Reactor <curriculum.team@hackreactor.com>"
+  ],
+  "license": "UNLICENSED",
+  "homepage": "https://github.com/ansonao/hrsf98-backcast",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

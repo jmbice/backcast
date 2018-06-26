@@ -5,23 +5,22 @@ var VideoListEntryView = Backbone.View.extend({
       this.render();
       // this.model.select();
     }, this);
-    // this.model.on('change', fu)
   },
   
-  // events: {
-  //   'click title': 'handleClick'
-  // },
+  events: {
+    'click': 'handleClick'
+  },
   
-  // handleClick: function(e) {
-  //   console.log(e);
-  //   e.select();
+  handleClick: function(e) {
+    console.log(this.model.select);
+    this.model.select();
 
-  // },
+  },
 
 
   render: function() {
     this.$el.html(this.template(this.model.attributes));
-    return this;
+    return this.$el;
   },
 
   template: templateURL('src/templates/videoListEntry.html')
