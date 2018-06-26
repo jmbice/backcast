@@ -4,12 +4,18 @@ var VideoPlayerView = Backbone.View.extend({
 
   model: Video,
 
-  render: function(videos) {
+  initialize: function(videos) {
+    // this.collection.on('select', this.render);
+    this.listenTo(this.collection, 'select', this.render);
+  },
+
+  render: function(video) {
+    console.log('render is being called?');
+    video = video || this.collection.models[0];
     this.$el.html('<div class="loading">Please wait...</div>');
     this.$el.children().detach();
-    this.$el.html(this.template(
-      //pass in the video object here
-    ));
+    console.log(this.collection.models);
+    this.$el.html(this.template(video.attributes));
 
     return this;
   },
